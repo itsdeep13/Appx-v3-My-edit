@@ -254,6 +254,14 @@ async def fetch_segment(session, seg_url, f):
                 break
             f.write(chunk)
 
+
+# ==============================
+# M3U8 COMPATIBILITY WRAPPER
+# ==============================
+async def download_m3u8(url: str, name: str):
+    return await download_m3u8_async(url, name)
+
+
 async def download_m3u8_async(url: str, filename: str):
     headers = {
         "User-Agent": "Mozilla/5.0 (Linux; Android 13)",
