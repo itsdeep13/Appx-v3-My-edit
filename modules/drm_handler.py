@@ -638,30 +638,20 @@ async def drm_handler(bot: Client, m: Message):
                                 count += 1
                                 continue
 
-                           elif "zip" in ctype:
-                               fname = f"{namef}.zip"
-                               with open(fname, "wb") as f:
-                                   for c in r.iter_content(1024 * 64):
-                                       if c:
-                                           f.write(c)
+                            elif "zip" in ctype:
+                                fname = f"{namef}.zip"
+                                with open(fname, "wb") as f:
+                                    for c in r.iter_content(1024 * 64):
+                                        if c:
+                                            f.write(c)
 
-                               await bot.send_document(channel_id, fname, caption=cczip)
-                               os.remove(fname)
-                               count += 1
-                               continue
+                                await bot.send_document(channel_id, fname, caption=cczip)
+                                os.remove(fname)
+                                count += 1
+                                continue
 
-    
-
-
-                            # ---------- UNKNOWN → FALLBACK ----------
                             else:
                                 raise Exception(f"Unknown content-type: {ctype}")
-
-                        
-
-
-
-                        
 
                         except FloodWait as e:
                             await m.reply_text(str(e))
